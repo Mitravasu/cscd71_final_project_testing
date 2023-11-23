@@ -28,6 +28,10 @@ declare global {
 export default function WalletProviderList() {
   const [providers, setProviders] = useState<EIP6963ProviderDetail[]>();
   useEffect(() => {
+    populateWalletProviders();
+  }, []);
+
+  function populateWalletProviders() {
     console.log("Adding wallet provider announce listener...");
     window.addEventListener(
       "eip6963:announceProvider",
@@ -41,7 +45,7 @@ export default function WalletProviderList() {
     );
 
     window.dispatchEvent(new Event("eip6963:requestProvider"));
-  }, []);
+  }
 
   function createProviderCard() {
     return providers?.map((provider, index) => {
