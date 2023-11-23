@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Eip1193Provider, ethers } from "ethers";
+import Image from "next/image";
 
 interface EIP6963ProviderInfo {
   uuid: string;
@@ -50,14 +51,9 @@ export default function WalletProviderList() {
   function createProviderCard() {
     return providers?.map((provider, index) => {
       return (
-        <div
-          key={index}
-          className="flex flex-col items-center justify-between p-6"
-        >
-          <div className="flex flex-col font-mono text-sm bg-slate-800 p-4 rounded-lg">
-            <img src={provider.info.icon} />
-            <h1>{provider.info.name}</h1>
-          </div>
+        <div key={index} className="flex flex-col font-mono text-sm bg-slate-800 p-4 rounded-lg text-center mt-10">
+          <Image src={provider.info.icon} width={96} height={96} alt=""/>
+          <h1 className="text-white p-2" >{provider.info.name}</h1>
         </div>
       );
     });
