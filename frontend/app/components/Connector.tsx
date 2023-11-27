@@ -24,6 +24,13 @@ export default function Connector() {
   useEffect(() => {
     console.log("Announcing Provider!");
     announceProvider();
+
+    window.addEventListener(
+      "eip6963:requestProvider",
+      (event: EIP6963RequestProviderEvent) => {
+        announceProvider();
+      }
+    );
   }, []);
   function announceProvider() {
     const info: EIP6963ProviderInfo = {
@@ -37,13 +44,6 @@ export default function Connector() {
       new CustomEvent("eip6963:announceProvider", {
         detail: Object.freeze({ info, provider: MockProvider }),
       })
-    );
-
-    window.addEventListener(
-      "eip6963:requestProvider",
-      (event: EIP6963RequestProviderEvent) => {
-        announceProvider();
-      }
     );
   }
 

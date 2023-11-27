@@ -28,6 +28,7 @@ export default function WalletProviderList() {
       }
     );
 
+    console.log("Requesting wallet providers...");
     window.dispatchEvent(new Event("eip6963:requestProvider"));
   }
 
@@ -53,6 +54,7 @@ export default function WalletProviderList() {
     <main>
       <div className="flex flex-col items-center font-mono text-sm lg:flex">
         <h1>Available Wallets</h1>
+        <button onClick={populateWalletProviders}>Look For Providers</button>
         <button onClick={printProviderInfo}>Print Provider Info</button>
         {createProviderCard()}
       </div>
