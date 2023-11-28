@@ -37,7 +37,7 @@ export default function WalletProviderList() {
   }
 
   function createProviderCard() {
-    return providers?.map((provider, index) => {
+    return providers?.filter(p => p!=null).map((provider, index) => {
       return (
         <div
           key={index}
