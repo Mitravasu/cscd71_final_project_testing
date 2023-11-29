@@ -1,5 +1,4 @@
 "use client";
-import { Eip1193Provider } from "ethers";
 import { useEffect } from "react";
 
 interface RequestArguments {
@@ -7,10 +6,14 @@ interface RequestArguments {
   readonly params?: readonly unknown[] | object;
 }
 
-const MockProvider: Eip1193Provider = {
+const MockProvider: EIP1193Provider = {
   request: (args: RequestArguments): Promise<unknown> => {
     console.log("MockProvider.request", args);
     return Promise.resolve({});
+  },
+  on(eventName, callback) {
+    console.log("Hello");
+    callback(eventName);
   },
 };
 

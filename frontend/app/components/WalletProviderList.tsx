@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Eip1193Provider, ethers } from "ethers";
+import { ethers } from "ethers";
 import Image from "next/image";
 
 declare global {
@@ -38,16 +38,38 @@ export default function WalletProviderList() {
 
   function createProviderCard() {
     return providers?.filter(p => p!=null).map((provider, index) => {
+      console.log(provider.provider);
+      console.log(provider.provider.request);
       return (
         <div
           key={index}
-          className="flex flex-col font-mono text-sm bg-slate-800 p-4 rounded-lg text-center mt-10"
+          className="flex flex-col font-mono text-sm bg-slate-800 p-4 rounded-lg text-center mt-10 items-center"
+          onClick={async() => await connectProvider(provider)}
         >
           <Image src={provider.info.icon} width={96} height={96} alt="" />
           <h1 className="text-white p-2">{provider.info.name}</h1>
         </div>
       );
     });
+  }
+
+  async function connectProvider(selectedProvider: EIP6963ProviderDetail) {
+    
+    try {
+      const accounts = (await selectedProvider.provider.request({
+        method: "eth_requestAccounts",
+      })) as string[];
+      console.log(accounts);
+      setProviders((prevProviders) => [
+        ...(prevProviders ? prevProviders : []),
+        {
+          ...selectedProvider
+        }
+      ]);
+    } catch (error) {
+      console.log(error);
+      throw new Error("Failed to connect to provider");
+    }
   }
 
   return (
