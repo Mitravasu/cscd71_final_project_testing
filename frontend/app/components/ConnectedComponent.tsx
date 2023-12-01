@@ -18,7 +18,7 @@ export default function ConnectedComponent({
     <div className="flex flex-col space-y-3">
       <div className="flex bg-slate-800 rounded-lg p-2">
         <Image src={provider.info.icon} width={36} height={36} alt="" />
-        <div className="p-3">
+        <div className="p-3 text-white">
           <h1>{provider.info.name}</h1>
           <h2>{provider.info.uuid}</h2>
           <h3>{provider.info.rdns}</h3>
