@@ -1,1 +1,1 @@
-Testing Ground for AA EIP6963 Extension
+Go to MockProvider branch for the DApp code
