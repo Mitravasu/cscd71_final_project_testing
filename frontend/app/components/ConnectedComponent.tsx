@@ -24,18 +24,6 @@ export default function ConnectedComponent({
           <h3>{provider.info.rdns}</h3>
         </div>
       </div>
-      <div className="flex bg-slate-800 p-4 rounded-lg space-x-2 justify-center">
-        <input
-          className="text-black text-lg p-2 rounded-lg"
-          type="text"
-          onChange={(e) => {
-            setAddress(e.target.value);
-          }}
-        ></input>
-        <button className="bg-red-800 rounded-lg p-3" onClick={send}>
-          Send ETH
-        </button>
-      </div>
     </div>
   );
 }
